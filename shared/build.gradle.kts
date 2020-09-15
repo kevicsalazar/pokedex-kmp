@@ -27,7 +27,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.8")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("org.kodein.di:kodein-di:7.0.0")
             }
@@ -40,9 +40,9 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
                 implementation("io.ktor:ktor-client-android:1.4.0")
                 implementation("com.squareup.sqldelight:android-driver:1.4.3")
+                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
             }
         }
         val androidTest by getting {
@@ -53,7 +53,6 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
                 implementation("io.ktor:ktor-client-ios:1.4.0")
                 implementation("com.squareup.sqldelight:native-driver:1.4.3")
             }
