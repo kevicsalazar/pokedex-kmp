@@ -1,22 +1,20 @@
-package com.kevicsalazar.pokedex.androidApp.features.list
+package com.kevicsalazar.pokedex.shared.features.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
-import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewState
+import com.kevicsalazar.pokedex.shared.features.arch.livedata.LiveData
+import com.kevicsalazar.pokedex.shared.features.arch.livedata.MutableLiveData
+import com.kevicsalazar.pokedex.shared.features.arch.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class PokemonListViewModel(
     private val getPokemonListUseCase: GetPokemonListUseCase
-) : ViewModel() {
+): ViewModel() {
 
     val viewState: LiveData<PokemonListViewState>
         get() = _viewState
 
-    private val _viewState = MutableLiveData<PokemonListViewState>()
+    private val _viewState = MutableLiveData<PokemonListViewState>(PokemonListViewState.Loading)
 
     fun getPokemonList() {
         viewModelScope.launch(exceptionHandler) {
