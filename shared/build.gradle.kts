@@ -43,6 +43,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:1.4.0")
                 implementation("com.squareup.sqldelight:android-driver:1.4.3")
                 implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+                implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
             }
         }
         val androidTest by getting {

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kevicsalazar.pokedex.androidApp.databinding.FragmentPokemonListBinding
 import com.kevicsalazar.pokedex.androidApp.utils.fragmentViewModel
+import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewModel2
 import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewState
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.di
@@ -17,7 +18,7 @@ class PokemonListFragment : Fragment(), DIAware {
 
     override val di by di()
 
-    private val viewModel: PokemonListViewModel by fragmentViewModel()
+    private val viewModel: PokemonListViewModel2 by fragmentViewModel()
 
     private lateinit var binding: FragmentPokemonListBinding
 
@@ -36,7 +37,13 @@ class PokemonListFragment : Fragment(), DIAware {
     }
 
     private fun setupViewModel() {
-        viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
+        viewModel.viewState.addObserver {
+            when (it) {
+                is PokemonListViewState.Loading -> Log.e("Response", "Loading")
+                is PokemonListViewState.Success -> Log.e("Response", it.list.toString())
+                is PokemonListViewState.Error -> Log.e("Response", "Error: ${it.message}")
+            }
+        }
         viewModel.getPokemonList()
     }
 
