@@ -37,13 +37,7 @@ class PokemonListFragment : Fragment(), DIAware {
     }
 
     private fun setupViewModel() {
-        viewModel.viewState.addObserver {
-            when (it) {
-                is PokemonListViewState.Loading -> Log.e("Response", "Loading")
-                is PokemonListViewState.Success -> Log.e("Response", it.list.toString())
-                is PokemonListViewState.Error -> Log.e("Response", "Error: ${it.message}")
-            }
-        }
+        viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
         viewModel.getPokemonList()
     }
 

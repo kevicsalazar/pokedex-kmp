@@ -1,23 +1,17 @@
 package com.kevicsalazar.pokedex.shared.features.arch.livedata
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData as ArchMutableLiveData
 
-actual open class MutableLiveData<T> : LiveData<T> {
+actual open class MutableLiveData<T> : LiveData<T>(ArchMutableLiveData()) {
 
-    actual constructor(initialValue: T) : super(MutableLiveData<T>().apply { value = initialValue })
-
-    constructor(mutableLiveData: MutableLiveData<T>) : super(mutableLiveData)
-
-    @Suppress("UNCHECKED_CAST")
-    actual override var value: T
-        get() = archLiveData.value as T
+    actual override var value: T?
+        get() = liveData.value
         set(newValue) {
-            (archLiveData as MutableLiveData<T>).value = newValue
+            (liveData as? ArchMutableLiveData<T>)?.value = newValue
         }
 
-    actual fun postValue(value: T) {
-        (archLiveData as MutableLiveData<T>).postValue(value)
+    actual fun postValue(value: T?) {
+        (liveData as? ArchMutableLiveData<T>)?.postValue(value)
     }
 
-    override fun ld(): MutableLiveData<T> = archLiveData as MutableLiveData<T>
 }

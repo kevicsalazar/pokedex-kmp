@@ -14,7 +14,7 @@ class PokemonListViewModel(
     val viewState: LiveData<PokemonListViewState>
         get() = _viewState
 
-    private val _viewState = MutableLiveData<PokemonListViewState>(PokemonListViewState.Loading)
+    private val _viewState = MutableLiveData<PokemonListViewState>()
 
     fun getPokemonList() {
         viewModelScope.launch(exceptionHandler) {
