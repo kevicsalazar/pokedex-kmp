@@ -8,12 +8,12 @@ actual open class LiveData<T> {
     actual open val value: T?
         get() = storedValue
 
-     fun addObserver(observer: (T?) -> Unit) {
+    fun addObserver(observer: (T?) -> Unit) {
         observer(value)
         observers.add(observer)
     }
 
-     fun removeObserver(observer: (T?) -> Unit) {
+    fun removeObserver(observer: (T?) -> Unit) {
         observers.remove(observer)
     }
 
