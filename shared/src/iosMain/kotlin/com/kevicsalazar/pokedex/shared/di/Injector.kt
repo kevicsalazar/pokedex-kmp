@@ -11,12 +11,12 @@ object Injector {
         importAll(commonModule, viewModelModule)
     }
 
-    private val viewModelModule = DI.Module("viewModel") {
-
-        bind() from provider { PokemonListViewModel(instance()) }
-
-    }
-
     fun providePokemonListViewModel() = sharedDi.direct.instance<PokemonListViewModel>()
+
+}
+
+private val viewModelModule = DI.Module("viewModel") {
+
+    bind() from provider { PokemonListViewModel(instance()) }
 
 }
