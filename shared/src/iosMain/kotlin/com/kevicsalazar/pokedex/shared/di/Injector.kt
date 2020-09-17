@@ -13,6 +13,6 @@ object Injector {
         import(commonModule)
     }
 
-    fun pokemonListViewModel() = sharedDi.direct.instance<PokemonListViewModel>()
+    fun providePokemonListViewModel() = sharedDi.direct.instance<PokemonListViewModel>()
 
 }
