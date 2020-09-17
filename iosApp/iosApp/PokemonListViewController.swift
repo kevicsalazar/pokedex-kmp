@@ -27,11 +27,11 @@ class PokemonListViewController: UIViewController {
     func observeViewModel() {
         viewModel.viewState.addObserver { (state) in
             if (state is PokemonListViewState.Success) {
-                //self.name.text = "SUCCESS"
+                self.name.text = "SUCCESS"
             } else if (state is PokemonListViewState.Loading) {
-                //self.name.text = "Loading"
+                self.name.text = "Loading"
             } else if (state is PokemonListViewState.Error) {
-                //self.name.text = "ERROR"
+                self.name.text = "ERROR"
             }
             
         }

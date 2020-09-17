@@ -8,7 +8,10 @@ class PokemonApi(private val httpClient: HttpClient) {
 
     suspend fun getPokemonList(): PokemonDto {
         val url = "https://pokeapi.co/api/v2/pokemon"
-        return httpClient.get(url)
+        println("Start Request")
+        val dto = httpClient.get<PokemonDto>(url)
+        println("End Request")
+        return dto
     }
 
 }

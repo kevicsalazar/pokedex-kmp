@@ -4,7 +4,7 @@ import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_current_queue
 import platform.darwin.dispatch_get_main_queue
 
-actual open class MutableLiveData<T> :LiveData<T>() {
+actual open class MutableLiveData<T> : LiveData<T>() {
 
     actual override var value: T?
         get() = super.value
