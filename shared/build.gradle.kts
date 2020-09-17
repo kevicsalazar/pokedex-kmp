@@ -29,7 +29,7 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
                 implementation("io.ktor:ktor-client-core:1.4.0")
-                implementation("org.kodein.di:kodein-di:7.0.0")
+                implementation("org.kodein.di:kodein-di:7.1.0-master-89")
             }
         }
         val commonTest by getting {

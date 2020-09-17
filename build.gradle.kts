@@ -18,3 +18,9 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+
+allprojects {
+    repositories {
+        maven("https://dl.bintray.com/kodein-framework/kodein-dev/")
+    }
+}
