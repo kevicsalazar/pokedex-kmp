@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kevicsalazar.pokedex.androidApp.databinding.FragmentPokemonListBinding
-import com.kevicsalazar.pokedex.androidApp.utils.fragmentViewModel
 import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewModel
 import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewState
+import com.kevicsalazar.pokedex.shared.utils.fragmentViewModel
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.di
 

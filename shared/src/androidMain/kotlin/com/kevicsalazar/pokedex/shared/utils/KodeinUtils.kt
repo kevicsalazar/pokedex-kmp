@@ -1,4 +1,4 @@
-package com.kevicsalazar.pokedex.androidApp.utils
+package com.kevicsalazar.pokedex.shared.utils
 
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment

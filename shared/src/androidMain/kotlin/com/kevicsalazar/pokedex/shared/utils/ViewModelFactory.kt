@@ -1,4 +1,4 @@
-package com.kevicsalazar.pokedex.androidApp.utils
+package com.kevicsalazar.pokedex.shared.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

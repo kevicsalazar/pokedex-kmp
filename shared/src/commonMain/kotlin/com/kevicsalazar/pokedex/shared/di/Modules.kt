@@ -10,7 +10,7 @@ import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
 import io.ktor.client.*
 import org.kodein.di.*
 
-val sharedModule = DI.Module("Shared") {
+val commonModule = DI.Module("Common") {
     import(useCasesModule)
     import(repositoryModule)
     import(networkModule)

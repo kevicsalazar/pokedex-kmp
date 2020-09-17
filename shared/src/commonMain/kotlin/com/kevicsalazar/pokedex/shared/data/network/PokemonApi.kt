@@ -9,7 +9,10 @@ import kotlinx.serialization.json.Json
 class PokemonApi(private val httpClient: HttpClient) {
 
     suspend fun getPokemonList(): PokemonDto {
-        val format = Json { isLenient = true }
+        val format = Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
         val url = "https://pokeapi.co/api/v2/pokemon"
         val json = httpClient.get<String>(url)
         return format.decodeFromString(json)
