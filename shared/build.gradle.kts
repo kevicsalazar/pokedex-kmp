@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization") version "1.4.0"
     id("com.android.library")
     id("kotlin-android-extensions")
     id("com.squareup.sqldelight")
@@ -28,6 +29,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("org.kodein.di:kodein-di:7.1.0-master-89")
             }

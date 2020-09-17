@@ -7,10 +7,8 @@ import com.kevicsalazar.pokedex.shared.data.repository.source.cloud.PokemonCloud
 import com.kevicsalazar.pokedex.shared.data.repository.source.data.PokemonDataStore
 import com.kevicsalazar.pokedex.shared.domain.repository.PokemonRepository
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.instance
-import org.kodein.di.provider
+import io.ktor.client.*
+import org.kodein.di.*
 
 val sharedModule = DI.Module("Shared") {
     import(useCasesModule)
@@ -36,5 +34,6 @@ val repositoryModule = DI.Module("Repository") {
 }
 
 val networkModule = DI.Module("Network") {
-    bind() from provider { PokemonApi() }
+    bind() from singleton { HttpClient() }
+    bind() from provider { PokemonApi(instance()) }
 }
