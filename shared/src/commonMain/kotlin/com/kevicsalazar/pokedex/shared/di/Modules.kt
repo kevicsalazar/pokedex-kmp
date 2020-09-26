@@ -9,19 +9,7 @@ import com.kevicsalazar.pokedex.shared.data.repository.source.data.PokemonDataSt
 import com.kevicsalazar.pokedex.shared.domain.repository.PokemonRepository
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
 import org.kodein.di.*
-import kotlin.native.concurrent.ThreadLocal
 
-@ThreadLocal
-object Injector {
-
-    val di = init()
-
-    fun init(f: DI.MainBuilder.() -> Unit = {}) = DI.lazy {
-        f.invoke(this)
-        import(sharedModule)
-    }
-
-}
 
 val sharedModule = DI.Module("Shared") {
     importAll(

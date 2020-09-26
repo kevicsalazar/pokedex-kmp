@@ -1,3 +1,5 @@
+@file:JvmName("AndroidModules")
+
 package com.kevicsalazar.pokedex.shared.di
 
 import com.kevicsalazar.pokedex.db.PokedexDatabase
