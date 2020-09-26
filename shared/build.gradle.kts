@@ -33,7 +33,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("io.ktor:ktor-client-json:1.4.0")
                 implementation("io.ktor:ktor-client-serialization:1.4.0")
-                implementation("org.kodein.di:kodein-di:7.1.0-master-89")
+                implementation("org.kodein.di:kodein-di:7.1.0")
             }
         }
         val commonTest by getting {
