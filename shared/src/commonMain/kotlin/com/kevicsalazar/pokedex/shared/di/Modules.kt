@@ -8,23 +8,38 @@ import com.kevicsalazar.pokedex.shared.data.repository.source.cloud.PokemonCloud
 import com.kevicsalazar.pokedex.shared.data.repository.source.data.PokemonDataStore
 import com.kevicsalazar.pokedex.shared.domain.repository.PokemonRepository
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
 import org.kodein.di.*
+import kotlin.native.concurrent.ThreadLocal
 
-val commonModule = DI.Module("Common") {
-    import(useCasesModule)
-    import(repositoryModule)
-    import(networkModule)
+@ThreadLocal
+object Injector {
+
+    val di = init()
+
+    fun init(f: DI.MainBuilder.() -> Unit = {}) = DI.lazy {
+        f.invoke(this)
+        import(sharedModule)
+    }
+
 }
 
-val useCasesModule = DI.Module("UseCases") {
+val sharedModule = DI.Module("Shared") {
+    importAll(
+        viewModelModule,
+        useCasesModule,
+        repositoryModule,
+        networkModule,
+        dbModule
+    )
+}
+
+expect val viewModelModule: DI.Module
+
+private val useCasesModule = DI.Module("UseCases") {
     bind() from provider { GetPokemonListUseCase(instance()) }
 }
 
-val repositoryModule = DI.Module("Repository") {
+private val repositoryModule = DI.Module("Repository") {
     bind<PokemonRepository>() with provider {
         PokemonDataRepository(
             instance(),
@@ -32,12 +47,14 @@ val repositoryModule = DI.Module("Repository") {
             instance()
         )
     }
-    bind() from provider { PokemonDataStore() }
+    bind() from provider { PokemonDataStore(instance()) }
     bind() from provider { PokemonCloudStore(instance()) }
     bind() from provider { PokemonMapper() }
 }
 
-val networkModule = DI.Module("Network") {
+private val networkModule = DI.Module("Network") {
     bind() from singleton { ApiClient.get() }
     bind() from provider { PokemonApi(instance()) }
 }
+
+expect val dbModule: DI.Module

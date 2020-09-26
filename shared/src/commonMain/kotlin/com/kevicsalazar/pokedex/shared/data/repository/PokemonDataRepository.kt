@@ -13,7 +13,9 @@ class PokemonDataRepository(
 ) : PokemonRepository{
 
     override suspend fun getPokemonList(): List<Pokemon> {
-        return mapper.map(cloudStore.getPokemonList())
+        val list = cloudStore.getPokemonList()
+        dataStore.savePokemons(list)
+        return mapper.map(list)
     }
 
 }
