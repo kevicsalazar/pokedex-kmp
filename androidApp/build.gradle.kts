@@ -19,6 +19,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     implementation("org.kodein.di:kodein-di-framework-android-x:7.0.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
 }

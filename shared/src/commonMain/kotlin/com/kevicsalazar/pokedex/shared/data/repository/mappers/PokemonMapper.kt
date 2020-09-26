@@ -1,15 +1,15 @@
 package com.kevicsalazar.pokedex.shared.data.repository.mappers
 
-import com.kevicsalazar.pokedex.shared.data.repository.source.cloud.PokemonDto
 import com.kevicsalazar.pokedex.shared.domain.entities.Pokemon
+import com.kevicsalazar.pokedex.db.Pokemon as PokemonEntity
 
 class PokemonMapper {
 
-    fun map(list: List<PokemonDto.Item>): List<Pokemon> {
-        return list.map { map(it) }
+    fun mapToDomainModel(list: List<PokemonEntity>): List<Pokemon> {
+        return list.map { mapToDomainModel(it) }
     }
 
-    private fun map(item: PokemonDto.Item): Pokemon {
+    private fun mapToDomainModel(item: PokemonEntity): Pokemon {
         return Pokemon(item.name, item.url)
     }
 

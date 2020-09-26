@@ -1,6 +1,7 @@
 package com.kevicsalazar.pokedex.shared.data.repository.source.data
 
 import com.kevicsalazar.pokedex.db.PokedexQueries
+import com.kevicsalazar.pokedex.db.Pokemon
 import com.kevicsalazar.pokedex.shared.data.repository.source.cloud.PokemonDto
 
 class PokemonDataStore(private val queries: PokedexQueries) {
@@ -11,6 +12,10 @@ class PokemonDataStore(private val queries: PokedexQueries) {
                 queries.insertItem(index.toLong(), item.name, item.url)
             }
         }
+    }
+
+    fun selectAll(): List<Pokemon> {
+        return queries.selectAll().executeAsList()
     }
 
 }

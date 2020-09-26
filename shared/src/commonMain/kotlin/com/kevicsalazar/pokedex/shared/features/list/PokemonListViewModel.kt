@@ -5,11 +5,12 @@ import com.kevicsalazar.pokedex.shared.features.arch.livedata.LiveData
 import com.kevicsalazar.pokedex.shared.features.arch.livedata.MutableLiveData
 import com.kevicsalazar.pokedex.shared.features.arch.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class PokemonListViewModel(
     private val getPokemonListUseCase: GetPokemonListUseCase
-): ViewModel() {
+) : ViewModel() {
 
     val viewState: LiveData<PokemonListViewState>
         get() = _viewState
@@ -19,8 +20,10 @@ class PokemonListViewModel(
     fun getPokemonList() {
         viewModelScope.launch(exceptionHandler) {
             _viewState.postValue(PokemonListViewState.Loading)
-            val list = getPokemonListUseCase.getPokemonList()
-            _viewState.postValue(PokemonListViewState.Success(list))
+            getPokemonListUseCase.getPokemonList()
+                .collect {
+                    _viewState.postValue(PokemonListViewState.Success(it))
+                }
         }
     }
 
