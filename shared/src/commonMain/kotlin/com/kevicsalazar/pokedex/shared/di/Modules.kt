@@ -8,6 +8,7 @@ import com.kevicsalazar.pokedex.shared.data.repository.source.cloud.PokemonCloud
 import com.kevicsalazar.pokedex.shared.data.repository.source.data.PokemonDataStore
 import com.kevicsalazar.pokedex.shared.domain.repository.PokemonRepository
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
+import com.kevicsalazar.pokedex.shared.domain.usecases.SyncPokemonListUseCase
 import org.kodein.di.*
 
 
@@ -25,6 +26,7 @@ expect val viewModelModule: DI.Module
 
 private val useCasesModule = DI.Module("UseCases") {
     bind() from provider { GetPokemonListUseCase(instance()) }
+    bind() from provider { SyncPokemonListUseCase(instance()) }
 }
 
 private val repositoryModule = DI.Module("Repository") {

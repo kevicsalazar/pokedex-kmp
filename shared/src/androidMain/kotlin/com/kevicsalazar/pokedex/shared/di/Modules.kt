@@ -14,7 +14,7 @@ actual val viewModelModule = DI.Module("ViewModel") {
 
     bind() from provider { ViewModelFactory(directDI) }
 
-    bindViewModel<PokemonListViewModel>() with provider { PokemonListViewModel(instance()) }
+    bindViewModel<PokemonListViewModel>() with provider { PokemonListViewModel(instance(), instance()) }
 
 }
 
@@ -22,6 +22,6 @@ actual val dbModule = DI.Module("Database") {
 
     bind() from singleton { DriverFactory(instance()).createDriver() }
     bind() from singleton { PokedexDatabase(instance()) }
-    bind() from singleton { instance<PokedexDatabase>().pokedexQueries }
+    bind() from singleton { instance<PokedexDatabase>().pokemonQueries }
 
 }

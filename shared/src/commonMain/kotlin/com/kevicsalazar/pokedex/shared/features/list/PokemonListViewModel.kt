@@ -1,6 +1,7 @@
 package com.kevicsalazar.pokedex.shared.features.list
 
 import com.kevicsalazar.pokedex.shared.domain.usecases.GetPokemonListUseCase
+import com.kevicsalazar.pokedex.shared.domain.usecases.SyncPokemonListUseCase
 import com.kevicsalazar.pokedex.shared.features.arch.livedata.LiveData
 import com.kevicsalazar.pokedex.shared.features.arch.livedata.MutableLiveData
 import com.kevicsalazar.pokedex.shared.features.arch.viewmodel.ViewModel
@@ -9,7 +10,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class PokemonListViewModel(
-    private val getPokemonListUseCase: GetPokemonListUseCase
+    private val getPokemonListUseCase: GetPokemonListUseCase,
+    private val syncPokemonListUseCase: SyncPokemonListUseCase,
 ) : ViewModel() {
 
     val viewState: LiveData<PokemonListViewState>
@@ -24,6 +26,12 @@ class PokemonListViewModel(
                 .collect {
                     _viewState.postValue(PokemonListViewState.Success(it))
                 }
+        }
+    }
+
+    fun syncPokemonList() {
+        viewModelScope.launch(exceptionHandler) {
+            syncPokemonListUseCase.syncPokemonList(true)
         }
     }
 

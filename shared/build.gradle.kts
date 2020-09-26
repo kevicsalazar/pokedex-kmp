@@ -33,6 +33,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("io.ktor:ktor-client-json:1.4.0")
                 implementation("io.ktor:ktor-client-serialization:1.4.0")
+                implementation("com.squareup.sqldelight:coroutines-extensions:1.4.3")
                 implementation("org.kodein.di:kodein-di:7.1.0")
             }
         }

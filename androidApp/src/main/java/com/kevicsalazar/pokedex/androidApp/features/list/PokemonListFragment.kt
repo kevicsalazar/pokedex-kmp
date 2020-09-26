@@ -34,11 +34,18 @@ class PokemonListFragment : Fragment(), DIAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
+        setupEvents()
     }
 
     private fun setupViewModel() {
         viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
         viewModel.getPokemonList()
+    }
+
+    private fun setupEvents() {
+        binding.btnRefresh.setOnClickListener {
+            viewModel.syncPokemonList()
+        }
     }
 
     private val viewStateObserver = Observer<PokemonListViewState> {
