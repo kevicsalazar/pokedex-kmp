@@ -1,13 +1,12 @@
 
 CREATE TABLE Pokemon (
-  key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  id INTEGER NOT NULL,
+  key INTEGER NOT NULL PRIMARY KEY,
   name TEXT NOT NULL,
   url TEXT NOT NULL
 );
 
 insertItem:
-INSERT OR REPLACE INTO Pokemon (id, name, url) VALUES (?, ?, ?);
+INSERT OR REPLACE INTO Pokemon (key, name, url) VALUES (?, ?, ?);
 
 selectAll:
 SELECT * FROM Pokemon ORDER BY key;
