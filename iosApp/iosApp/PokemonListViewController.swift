@@ -11,7 +11,7 @@ import shared
 
 class PokemonListViewController: UIViewController {
 
-    let viewModel = Injector.init().providePokemonListViewModel()
+    let viewModel = Provider.init().providePokemonListViewModel()
     
     @IBOutlet weak var name: UILabel!
     

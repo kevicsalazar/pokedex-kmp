@@ -2,7 +2,6 @@
 
 package com.kevicsalazar.pokedex.shared.di
 
-import com.kevicsalazar.pokedex.db.PokedexDatabase
 import com.kevicsalazar.pokedex.shared.data.db.DriverFactory
 import com.kevicsalazar.pokedex.shared.features.list.PokemonListViewModel
 import com.kevicsalazar.pokedex.shared.utils.ViewModelFactory
@@ -18,10 +17,8 @@ actual val viewModelModule = DI.Module("ViewModel") {
 
 }
 
-actual val dbModule = DI.Module("Database") {
+actual val dbDriverModule = DI.Module("DatabaseDriver") {
 
     bind() from singleton { DriverFactory(instance()).createDriver() }
-    bind() from singleton { PokedexDatabase(instance()) }
-    bind() from singleton { instance<PokedexDatabase>().pokemonQueries }
 
 }

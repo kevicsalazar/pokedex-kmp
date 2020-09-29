@@ -1,5 +1,6 @@
 package com.kevicsalazar.pokedex.shared.di
 
+import com.kevicsalazar.pokedex.db.PokedexDatabase
 import com.kevicsalazar.pokedex.shared.data.network.ApiClient
 import com.kevicsalazar.pokedex.shared.data.network.PokemonApi
 import com.kevicsalazar.pokedex.shared.data.repository.PokemonDataRepository
@@ -18,6 +19,7 @@ val sharedModule = DI.Module("Shared") {
         useCasesModule,
         repositoryModule,
         networkModule,
+        dbDriverModule,
         dbModule
     )
 }
@@ -47,4 +49,11 @@ private val networkModule = DI.Module("Network") {
     bind() from provider { PokemonApi(instance()) }
 }
 
-expect val dbModule: DI.Module
+expect val dbDriverModule: DI.Module
+
+private val dbModule = DI.Module("Database") {
+
+    bind() from singleton { PokedexDatabase(instance()) }
+    bind() from singleton { instance<PokedexDatabase>().pokemonQueries }
+
+}

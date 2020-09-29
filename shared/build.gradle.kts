@@ -28,7 +28,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9-native-mt-2")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("io.ktor:ktor-client-json:1.4.0")
@@ -105,8 +105,12 @@ android {
 val packForXcode by tasks.creating(Sync::class) {
     group = "build"
     val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
+    //val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
+    //val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
+
+    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+    val targetName = if (onPhone) "iosArm64" else "iosX64"
+
     val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
     inputs.property("mode", mode)
     dependsOn(framework.linkTask)
