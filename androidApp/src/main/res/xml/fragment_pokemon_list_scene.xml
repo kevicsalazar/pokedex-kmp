@@ -12,18 +12,6 @@
             motion:touchAnchorSide="top" />
     </Transition>
 
-    <Transition
-        motion:constraintSetEnd="@+id/end"
-        motion:constraintSetStart="@+id/start"
-        motion:duration="2000"
-        motion:motionInterpolator="cubic-bezier(.12, .85, .84, .24)">
-
-        <OnClick
-            motion:clickAction="transitionToEnd"
-            motion:targetId="@+id/btn_refresh" />
-
-    </Transition>
-
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/view_extra"

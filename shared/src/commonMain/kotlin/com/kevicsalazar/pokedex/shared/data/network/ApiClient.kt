@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.websocket.*
 
 expect val httpClientEngine: HttpClientEngine
 
@@ -19,6 +20,7 @@ object ApiClient {
                     useArrayPolymorphism = false
                 })
             }
+            install(WebSockets)
         }
     }
 
